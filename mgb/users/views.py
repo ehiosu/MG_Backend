@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from .models import Character, Item
-from .serializers import CharacterSerializer,ItemSerializer
+from .serializers import CharacterSerializer,ItemSerializer,WeaponSerializer
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
@@ -118,3 +118,12 @@ class AddItemToInventoryView(APIView):
 
         inventory.items.add(item)
         return Response({'message': 'Item added to inventory'})
+    
+
+class CreateWeaponAPIView(APIView):
+    def post(self, request):
+        serializer = WeaponSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)

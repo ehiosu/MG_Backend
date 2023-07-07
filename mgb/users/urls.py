@@ -7,7 +7,8 @@ from .views import (
     CreateAccountView,
     DeleteCharacterView,
     CreateItemView,
-    AddItemToInventoryView
+    AddItemToInventoryView,
+    CreateWeaponAPIView
    
 )
 
@@ -20,5 +21,6 @@ urlpatterns = [
     path('characters/<int:character_id>/delete/', DeleteCharacterView.as_view(), name='delete_character'),
     path('items/', CreateItemView.as_view(), name='create_item'),
     path('characters/<int:character_id>/inventory/<int:item_id>/add/', AddItemToInventoryView.as_view(), name='add_item_to_inventory'),
+     path('weapons/create/', CreateWeaponAPIView.as_view(), name='create_weapon'),
 
 ]

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from    .models  import  Inventory,Character,Item
+from    .models  import  Inventory,Character,Item,Weapon
 class InventorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Inventory
@@ -40,3 +40,8 @@ class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = ['id', 'name']
+
+class WeaponSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Weapon
+        fields = ['id', 'damage_type', 'strength', 'intelligence', 'dexterity']
