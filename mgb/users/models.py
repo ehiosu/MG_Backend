@@ -7,7 +7,7 @@ from django.db import models
 
 
 class Item(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100,unique=True)
 
     def __str__(self):
         return self.name
@@ -45,3 +45,21 @@ class  Weapon(Item):
     intelligence = models.IntegerField()
     dexterity = models.IntegerField()
 
+
+class ItemWeapon(models.Model):
+    DAMAGE_TYPES = (
+        ('Physical', 'Physical'),
+        ('Fire', 'Fire'),
+        ('Water', 'Water'),
+        ('Wind', 'Wind'),
+        ('Light', 'Light'),
+        ('Dark', 'Dark'),
+    )
+    item = models.OneToOneField(Item, on_delete=models.CASCADE,primary_key=True)
+    damage_type = models.CharField(choices=DAMAGE_TYPES, max_length=10)
+    strength = models.IntegerField()
+    intelligence = models.IntegerField()
+    dexterity = models.IntegerField()
+
+    def __str__(self):
+        return f"Weapon (ID: {self.pk})"

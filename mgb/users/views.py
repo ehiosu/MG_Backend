@@ -11,6 +11,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 from rest_framework.exceptions import AuthenticationFailed
 
+
 class LoginView(APIView):
     def post(self, request):
         username = request.data.get('username')
